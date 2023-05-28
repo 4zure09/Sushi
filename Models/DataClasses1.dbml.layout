@@ -38,28 +38,28 @@
         <elementListCompartment Id="0769c1cd-0958-457e-a227-ec8599d8c663" absoluteBounds="3.515, 6.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 4.16429768880208); (6.25 : 4.16429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 4.16429768880208); (6.25 : 4.16429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClasses1DataContext/DonDatHang/DonDatHang_ChiTietDonHang" />
       <nodes>
         <classShapeMoniker Id="f9d0ef76-d6d2-4239-b77a-6cb6866a51cd" />
         <classShapeMoniker Id="d9e35dff-a10d-4f87-9eba-3b701b010210" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.35179768880208); (3.5 : 2.35179768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.35179768880208); (3.5 : 2.35179768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClasses1DataContext/KhachHang/KhachHang_TaiKhoan" />
       <nodes>
         <classShapeMoniker Id="db5adc59-e9fc-40a5-b04e-67e85fcd3a10" />
         <classShapeMoniker Id="4d751ee7-00e6-4fd5-97db-20bd1592728a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.53929768880208); (3.5 : 3.53929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 3.53929768880208); (3.5 : 3.53929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClasses1DataContext/KhachHang/KhachHang_DonDatHang" />
       <nodes>
         <classShapeMoniker Id="db5adc59-e9fc-40a5-b04e-67e85fcd3a10" />
         <classShapeMoniker Id="f9d0ef76-d6d2-4239-b77a-6cb6866a51cd" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 7.13544840494792); (7.25 : 7.13544840494792); (7.25 : 4.95359537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 7.13544840494792); (7.25 : 7.13544840494792); (7.25 : 4.95359537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClasses1DataContext/Sushi/Sushi_ChiTietDonHang" />
       <nodes>
         <classShapeMoniker Id="1d0cca79-c81e-4d11-b404-37a260535124" />

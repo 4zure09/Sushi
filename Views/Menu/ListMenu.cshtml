@@ -1,7 +1,7 @@
 ﻿@model IEnumerable <sushi.Models.Sushi>
 @{
     ViewBag.Title = "ListMenu";
-    Layout = "~/Views/Shared/_Layoutabout.cshtml";
+    Layout = "~/Views/Shared/_Layoutmenu.cshtml";
 }
 
 <!-- Product Start -->
@@ -23,7 +23,7 @@
                             <span>@item.MoTa</span>
                         </div>
                         <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="img/product-1.jpg" alt="">
+                            <img class="img-fluid" src="@item.Hinh" alt="">
                             <div class="product-overlay">
                                 <a class="btn btn-lg-square btn-outline-light rounded-circle" href=""><i class="fa fa-eye text-primary"></i></a>
                             </div>
