@@ -14,7 +14,7 @@ namespace sushi.Controllers
 
         public MenuController()
         {
-            string connectionString = "YOUR_CONNECTION_STRING";
+            string connectionString = "Data Source=JIN-592G\\SQLEXPRESS;Initial Catalog=DACS;Integrated Security=True";
             data = new DataClasses1DataContext(connectionString);
         }
 
