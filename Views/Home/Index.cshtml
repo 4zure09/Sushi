@@ -2,7 +2,27 @@
     ViewBag.Title = "home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<!-- Carousel Start -->
+<div class="container-fluid p-0 pb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="owl-carousel header-carousel position-relative">
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="/img/back1.jpg" alt="">
+            <div class="owl-carousel-inner">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-lg-8">
+                            <p class="text-primary text-uppercase fw-bold mb-2">The Best Sushi</p>
+                            <h1 class="display-1 text-light mb-4 animated slideInDown">Sushi with Art</h1>
+                            <p class="text-light fs-5 mb-4 pb-3">Sự hợp nhất của nghệ thuật và ẩm thực</p>
+                            <a>@Html.ActionLink("Read more", "../Home/About", "Home", new { @class = "btn btn-primary rounded-pill py-3 px-5" })</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Carousel End -->
 <!-- Facts Start -->
 <div class="container-xxl py-6">
     <div class="container">
@@ -104,7 +124,7 @@
             </div>
         </div>
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <p>@Html.ActionLink("Our Menu","../Menu/ListMenu","Menu", new { @class = "text-secondary text-uppercase mb-2 btn btn-primary" })</p>
+            <p>@Html.ActionLink("Our Menu", "../Menu/ListMenu", "Menu", new { @class = "text-secondary text-uppercase mb-2 btn btn-primary" })</p>
             <h1 class="display-6 mb-4">Khám phá các loại sushi của chúng tôi</h1>
         </div>
         <div class="row g-4">
