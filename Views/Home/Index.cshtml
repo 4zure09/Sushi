@@ -18,19 +18,19 @@
                 <div class="fact-item bg-light rounded text-center h-100 p-5">
                     <i class="fa fa-users fa-4x text-primary mb-4"></i>
                     <p class="mb-2">Chef</p>
-                    <h1 class="display-5 mb-0" data-toggle="counter-up">5</h1>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">4</h1>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.5s">
                 <div class="fact-item bg-light rounded text-center h-100 p-5">
-                    <i class="fa fa-bread-slice fa-4x text-primary mb-4"></i>
+                    <i class="fa fa-hockey-puck fa-4x text-primary mb-4"></i>
                     <p class="mb-2">Sushi</p>
-                    <h1 class="display-5 mb-0" data-toggle="counter-up">50</h1>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">20</h1>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.7s">
                 <div class="fact-item bg-light rounded text-center h-100 p-5">
-                    <i class="fa fa-cart-plus fa-4x text-primary mb-4"></i>
+                    <i class="fa fa-border-all fa-4x text-primary mb-4"></i>
                     <p class="mb-2">table</p>
                     <h1 class="display-5 mb-0" data-toggle="counter-up">50</h1>
                 </div>
@@ -46,10 +46,10 @@
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="row img-twice position-relative h-100">
                     <div class="col-6">
-                        <img class="img-fluid rounded" src="img/about-1.jpg" alt="">
+                        <img class="img-fluid rounded" src="~/img/about1.jpg" alt="">
                     </div>
                     <div class="col-6 align-self-end">
-                        <img class="img-fluid rounded" src="img/about-2.jpg" alt="">
+                        <img class="img-fluid rounded" src="~/img/about2.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -57,10 +57,12 @@
                 <div class="h-100">
                     <p class="text-primary text-uppercase mb-2">Story about Anjaz</p>
                     <h1 class="display-6 mb-4">Anjaz</h1>
-                    <p>Về cốt lõi, Kasen có nghĩa vụ biến đổi các nguyên liệu theo mùa, chất lượng cao nhất thành một trải nghiệm Omakase khác biệt. 
-                    Kế thừa kỹ thuật nấu nướng của bậc thầy sushi hàng đầu Murata Shinji, truyền thống được đẩy vào sự đổi mới và tinh tế. Kiến thức, 
-                    kinh nghiệm và sự kết hợp tinh tế, phối hợp thay đổi để mang đến những hương vị và dịch vụ mới. Kasen hứa hẹn sẽ mang đến nét nghệ thuật, 
-                    hương vị độc đáo của ẩm thực Nhật Bản.</p>
+                    <p>
+                        Về cốt lõi, Kasen có nghĩa vụ biến đổi các nguyên liệu theo mùa, chất lượng cao nhất thành một trải nghiệm Omakase khác biệt.
+                        Kế thừa kỹ thuật nấu nướng của bậc thầy sushi hàng đầu Murata Shinji, truyền thống được đẩy vào sự đổi mới và tinh tế. Kiến thức,
+                        kinh nghiệm và sự kết hợp tinh tế, phối hợp thay đổi để mang đến những hương vị và dịch vụ mới. Kasen hứa hẹn sẽ mang đến nét nghệ thuật,
+                        hương vị độc đáo của ẩm thực Nhật Bản.
+                    </p>
                     <div class="row g-2 mb-4">
                         <div class="col-sm-6">
                             <i class="fa fa-check text-primary me-2"></i>Thực phẩm tươi
@@ -75,7 +77,7 @@
                             <i class="fa fa-check text-primary me-2"></i>Phương pháp chế biến tuân thủ quy trình
                         </div>
                     </div>
-                    <a class="btn btn-primary rounded-pill py-3 px-5" href="">Read More</a>
+                    <a>@Html.ActionLink("Read More", "../Home/About", "Home", new { @class = "btn btn-primary rounded-pill py-3 px-5" })</a>
                 </div>
             </div>
         </div>
@@ -102,40 +104,40 @@
             </div>
         </div>
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <p>@Html.ActionLink("Our Menu","ListMenu","Menu", new { @class = "text-secondary text-uppercase mb-2 btn btn-primary" })</p>
+            <p>@Html.ActionLink("Our Menu","../Menu/ListMenu","Menu", new { @class = "text-secondary text-uppercase mb-2 btn btn-primary" })</p>
             <h1 class="display-6 mb-4">Khám phá các loại sushi của chúng tôi</h1>
         </div>
         <div class="row g-4">
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
                     <div class="text-center p-4">
-                        <h3 class="mb-3">Roll</h3>
-                        <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
+                        <h3 class="mb-3">Tako</h3>
+                        <span>Mực</span>
                     </div>
                     <div class="position-relative mt-auto">
-                        <img class="img-fluid" src="/img/product-1.jpg" alt="">
+                        <img class="img-fluid" src="/img/Tako.jpg" alt="Tako">
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
                     <div class="text-center p-4">
-                        <h3 class="mb-3">Bread</h3>
-                        <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
+                        <h3 class="mb-3">Sake</h3>
+                        <span>Cá hồi</span>
                     </div>
                     <div class="position-relative mt-auto">
-                        <img class="img-fluid" src="/img/product-2.jpg" alt="">
+                        <img class="img-fluid" src="/img/Sake.jpg" alt="">
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
                     <div class="text-center p-4">
-                        <h4 class="mb-3">Cookies</h4>
-                        <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
+                        <h4 class="mb-3">Usagi</h4>
+                        <span>Lươn Nhật</span>
                     </div>
                     <div class="position-relative mt-auto">
-                        <img class="img-fluid" src="/img/product-3.jpg" alt="">
+                        <img class="img-fluid" src="/img/Usagi.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -209,7 +211,7 @@ Service End -->
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
             <p class="text-primary text-uppercase mb-2">Our Team</p>
-            <h1 class="display-6 mb-4">Chúng tôi tự tin về kỹ năng chế biến của mình/h1>
+            <h1 class="display-6 mb-4">Chúng tôi tự tin về kỹ năng chế biến của mình</h1>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -277,68 +279,3 @@ Service End -->
     </div>
 </div>
 <!-- Team End -->
-<!-- Testimonial Start -->
-<div class="container-xxl bg-light my-6 py-6 pb-0">
-    <div class="container">
-        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <p class="text-primary text-uppercase mb-2">// Client's Review</p>
-            <h1 class="display-6 mb-4">More Than 20000+ Customers Trusted Us</h1>
-        </div>
-        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-            <div class="testimonial-item bg-white rounded p-4">
-                <div class="d-flex align-items-center mb-4">
-                    <img class="flex-shrink-0 rounded-circle border p-1" src="img/testimonial-1.jpg" alt="">
-                    <div class="ms-4">
-                        <h5 class="mb-1">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-            </div>
-            <div class="testimonial-item bg-white rounded p-4">
-                <div class="d-flex align-items-center mb-4">
-                    <img class="flex-shrink-0 rounded-circle border p-1" src="img/testimonial-2.jpg" alt="">
-                    <div class="ms-4">
-                        <h5 class="mb-1">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-            </div>
-            <div class="testimonial-item bg-white rounded p-4">
-                <div class="d-flex align-items-center mb-4">
-                    <img class="flex-shrink-0 rounded-circle border p-1" src="img/testimonial-3.jpg" alt="">
-                    <div class="ms-4">
-                        <h5 class="mb-1">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-            </div>
-            <div class="testimonial-item bg-white rounded p-4">
-                <div class="d-flex align-items-center mb-4">
-                    <img class="flex-shrink-0 rounded-circle border p-1" src="img/testimonial-4.jpg" alt="">
-                    <div class="ms-4">
-                        <h5 class="mb-1">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-            </div>
-        </div>
-        <div class="bg-primary text-light rounded-top p-5 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h1 class="display-4 text-light mb-0">Subscribe Our Newsletter</h1>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <div class="position-relative">
-                        <input class="form-control bg-transparent border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-dark py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Testimonial End -->
