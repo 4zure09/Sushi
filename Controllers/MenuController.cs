@@ -10,7 +10,7 @@ namespace sushi.Controllers
     public class MenuController : Controller
     {
         // GET: Menu
-        DataClasses1DataContext data;
+        private readonly DataClasses1DataContext data;
 
         public MenuController()
         {
