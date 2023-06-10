@@ -6,6 +6,7 @@
       <Column Name="MaKH" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Gia" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Association Name="KhachHang_cart" Member="KhachHang" ThisKey="MaKH" OtherKey="MaKH" Type="KhachHang" IsForeignKey="true" />
+      <Association Name="Sushi_cart" Member="Sushi" ThisKey="ID_Sushi" OtherKey="ID_Sushi" Type="Sushi" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TaiKhoan" Member="TaiKhoans">
@@ -16,8 +17,8 @@
       <Association Name="TaiKhoan_NhanVien" Member="NhanViens" ThisKey="TenDangNhap" OtherKey="TenDangNhap" Type="NhanVien" />
     </Type>
   </Table>
-  <Table Name="dbo.ChiTietDonHang" Member="CT_HDs">
-    <Type Name="CT_HD">
+  <Table Name="dbo.ChiTietDonHang" Member="ChiTietDonHangs">
+    <Type Name="ChiTietDonHang">
       <Column Name="MaHÐ" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ID_Sushi" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -43,7 +44,7 @@
       <Column Name="ThanhToan" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="MaKH" Type="System.String" DbType="Char(50) NOT NULL" CanBeNull="false" />
       <Column Name="TongTienTT" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Association Name="HOA_DON_ChiTietDonHang" Member="CT_HDs" Storage="_ChiTietDonHangs" ThisKey="MaHÐ" OtherKey="MaHÐ" Type="CT_HD" />
+      <Association Name="HOA_DON_ChiTietDonHang" Member="ChiTietDonHangs" ThisKey="MaHÐ" OtherKey="MaHÐ" Type="ChiTietDonHang" />
       <Association Name="KhachHang_HOA_DON" Member="KhachHang" ThisKey="MaKH" OtherKey="MaKH" Type="KhachHang" IsForeignKey="true" />
       <Association Name="NhanVien_HOA_DON" Member="NhanVien" ThisKey="MaNV" OtherKey="MaNV" Type="NhanVien" IsForeignKey="true" />
     </Type>
@@ -51,7 +52,7 @@
   <Table Name="dbo.KhachHang" Member="KhachHangs">
     <Type Name="KhachHang">
       <Column Name="MaKH" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TenDangNhapTK" Member="TenDangNhap" Storage="_TenDangNhapTK" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TenDangNhapTK" Member="TenDangNhap" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
       <Column Name="HoTenKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SDT" Type="System.String" DbType="Char(10)" CanBeNull="true" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
@@ -77,11 +78,12 @@
   </Table>
   <Table Name="dbo.Sushi" Member="Sushis">
     <Type Name="Sushi">
-      <Column Name="ID_Sushi" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID_Sushi" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenSushi" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="MoTa" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Gia" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
       <Column Name="Hinh" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Association Name="Sushi_cart" Member="carts" ThisKey="ID_Sushi" OtherKey="ID_Sushi" Type="cart" />
     </Type>
   </Table>
 </Database>

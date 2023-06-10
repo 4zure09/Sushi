@@ -16,12 +16,12 @@ namespace sushi.Models
         }
         public int Mahd { get; set; }
         public string tensp { get; set; }
-        public int masp { get; set; }
+        public string masp { get; set; }
         public int iSoluong { get; set; }
         public Double tonggia { get; set; }
 
 
-        public CTHDlst(int idsanpham, int mahd)
+        public CTHDlst(string idsanpham, int mahd)
         {
             Mahd = mahd;
             masp = idsanpham;

@@ -107,7 +107,7 @@ namespace sushi.Controllers
 
                     db.KhachHangs.InsertOnSubmit(kh);
                     db.SubmitChanges();
-                    return RedirectToAction("DangNhap");
+                    return RedirectToAction("Login");
                 }
                 else
                 {

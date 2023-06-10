@@ -36,9 +36,9 @@ namespace sushi.Models
     partial void InsertTaiKhoan(TaiKhoan instance);
     partial void UpdateTaiKhoan(TaiKhoan instance);
     partial void DeleteTaiKhoan(TaiKhoan instance);
-    partial void InsertCT_HD(CT_HD instance);
-    partial void UpdateCT_HD(CT_HD instance);
-    partial void DeleteCT_HD(CT_HD instance);
+    partial void InsertChiTietDonHang(ChiTietDonHang instance);
+    partial void UpdateChiTietDonHang(ChiTietDonHang instance);
+    partial void DeleteChiTietDonHang(ChiTietDonHang instance);
     partial void InsertCHUC_VU(CHUC_VU instance);
     partial void UpdateCHUC_VU(CHUC_VU instance);
     partial void DeleteCHUC_VU(CHUC_VU instance);
@@ -96,11 +96,11 @@ namespace sushi.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<CT_HD> CT_HDs
+		public System.Data.Linq.Table<ChiTietDonHang> ChiTietDonHangs
 		{
 			get
 			{
-				return this.GetTable<CT_HD>();
+				return this.GetTable<ChiTietDonHang>();
 			}
 		}
 		
@@ -161,6 +161,8 @@ namespace sushi.Models
 		
 		private EntityRef<KhachHang> _KhachHang;
 		
+		private EntityRef<Sushi> _Sushi;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -178,6 +180,7 @@ namespace sushi.Models
 		public cart()
 		{
 			this._KhachHang = default(EntityRef<KhachHang>);
+			this._Sushi = default(EntityRef<Sushi>);
 			OnCreated();
 		}
 		
@@ -192,6 +195,10 @@ namespace sushi.Models
 			{
 				if ((this._ID_Sushi != value))
 				{
+					if (this._Sushi.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnID_SushiChanging(value);
 					this.SendPropertyChanging();
 					this._ID_Sushi = value;
@@ -295,6 +302,40 @@ namespace sushi.Models
 						this._MaKH = default(string);
 					}
 					this.SendPropertyChanged("KhachHang");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sushi_cart", Storage="_Sushi", ThisKey="ID_Sushi", OtherKey="ID_Sushi", IsForeignKey=true)]
+		public Sushi Sushi
+		{
+			get
+			{
+				return this._Sushi.Entity;
+			}
+			set
+			{
+				Sushi previousValue = this._Sushi.Entity;
+				if (((previousValue != value) 
+							|| (this._Sushi.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Sushi.Entity = null;
+						previousValue.carts.Remove(this);
+					}
+					this._Sushi.Entity = value;
+					if ((value != null))
+					{
+						value.carts.Add(this);
+						this._ID_Sushi = value.ID_Sushi;
+					}
+					else
+					{
+						this._ID_Sushi = default(string);
+					}
+					this.SendPropertyChanged("Sushi");
 				}
 			}
 		}
@@ -463,7 +504,7 @@ namespace sushi.Models
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChiTietDonHang")]
-	public partial class CT_HD : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class ChiTietDonHang : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -496,7 +537,7 @@ namespace sushi.Models
     partial void OnNgayMuaChanged();
     #endregion
 		
-		public CT_HD()
+		public ChiTietDonHang()
 		{
 			this._HOA_DON = default(EntityRef<HOA_DON>);
 			OnCreated();
@@ -606,7 +647,7 @@ namespace sushi.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HOA_DON_CT_HD", Storage="_HOA_DON", ThisKey="MaHÐ", OtherKey="MaHÐ", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HOA_DON_ChiTietDonHang", Storage="_HOA_DON", ThisKey="MaHÐ", OtherKey="MaHÐ", IsForeignKey=true)]
 		public HOA_DON HOA_DON
 		{
 			get
@@ -623,12 +664,12 @@ namespace sushi.Models
 					if ((previousValue != null))
 					{
 						this._HOA_DON.Entity = null;
-						previousValue.CT_HDs.Remove(this);
+						previousValue.ChiTietDonHangs.Remove(this);
 					}
 					this._HOA_DON.Entity = value;
 					if ((value != null))
 					{
-						value.CT_HDs.Add(this);
+						value.ChiTietDonHangs.Add(this);
 						this._MaHÐ = value.MaHÐ;
 					}
 					else
@@ -797,7 +838,7 @@ namespace sushi.Models
 		
 		private System.Nullable<decimal> _TongTienTT;
 		
-		private EntitySet<CT_HD> _ChiTietDonHangs;
+		private EntitySet<ChiTietDonHang> _ChiTietDonHangs;
 		
 		private EntityRef<KhachHang> _KhachHang;
 		
@@ -827,7 +868,7 @@ namespace sushi.Models
 		
 		public HOA_DON()
 		{
-			this._ChiTietDonHangs = new EntitySet<CT_HD>(new Action<CT_HD>(this.attach_ChiTietDonHangs), new Action<CT_HD>(this.detach_ChiTietDonHangs));
+			this._ChiTietDonHangs = new EntitySet<ChiTietDonHang>(new Action<ChiTietDonHang>(this.attach_ChiTietDonHangs), new Action<ChiTietDonHang>(this.detach_ChiTietDonHangs));
 			this._KhachHang = default(EntityRef<KhachHang>);
 			this._NhanVien = default(EntityRef<NhanVien>);
 			OnCreated();
@@ -1001,8 +1042,8 @@ namespace sushi.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HOA_DON_CT_HD", Storage="_ChiTietDonHangs", ThisKey="MaHÐ", OtherKey="MaHÐ")]
-		public EntitySet<CT_HD> CT_HDs
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HOA_DON_ChiTietDonHang", Storage="_ChiTietDonHangs", ThisKey="MaHÐ", OtherKey="MaHÐ")]
+		public EntitySet<ChiTietDonHang> ChiTietDonHangs
 		{
 			get
 			{
@@ -1102,13 +1143,13 @@ namespace sushi.Models
 			}
 		}
 		
-		private void attach_ChiTietDonHangs(CT_HD entity)
+		private void attach_ChiTietDonHangs(ChiTietDonHang entity)
 		{
 			this.SendPropertyChanging();
 			entity.HOA_DON = this;
 		}
 		
-		private void detach_ChiTietDonHangs(CT_HD entity)
+		private void detach_ChiTietDonHangs(ChiTietDonHang entity)
 		{
 			this.SendPropertyChanging();
 			entity.HOA_DON = null;
@@ -1123,7 +1164,7 @@ namespace sushi.Models
 		
 		private string _MaKH;
 		
-		private string _TenDangNhapTK;
+		private string _TenDangNhap;
 		
 		private string _HoTenKH;
 		
@@ -1185,20 +1226,20 @@ namespace sushi.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="TenDangNhapTK", Storage="_TenDangNhapTK", DbType="Char(30) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="TenDangNhapTK", Storage="_TenDangNhap", DbType="Char(30) NOT NULL", CanBeNull=false)]
 		public string TenDangNhap
 		{
 			get
 			{
-				return this._TenDangNhapTK;
+				return this._TenDangNhap;
 			}
 			set
 			{
-				if ((this._TenDangNhapTK != value))
+				if ((this._TenDangNhap != value))
 				{
 					this.OnTenDangNhapChanging(value);
 					this.SendPropertyChanging();
-					this._TenDangNhapTK = value;
+					this._TenDangNhap = value;
 					this.SendPropertyChanged("TenDangNhap");
 					this.OnTenDangNhapChanged();
 				}
@@ -1334,11 +1375,11 @@ namespace sushi.Models
 					if ((value != null))
 					{
 						value.KhachHangs.Add(this);
-						this._TenDangNhapTK = value.TenDangNhap;
+						this._TenDangNhap = value.TenDangNhap;
 					}
 					else
 					{
-						this._TenDangNhapTK = default(string);
+						this._TenDangNhap = default(string);
 					}
 					this.SendPropertyChanged("TaiKhoan");
 				}
@@ -1712,7 +1753,7 @@ namespace sushi.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ID_Sushi;
+		private string _ID_Sushi;
 		
 		private string _TenSushi;
 		
@@ -1722,11 +1763,13 @@ namespace sushi.Models
 		
 		private string _Hinh;
 		
+		private EntitySet<cart> _carts;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnID_SushiChanging(int value);
+    partial void OnID_SushiChanging(string value);
     partial void OnID_SushiChanged();
     partial void OnTenSushiChanging(string value);
     partial void OnTenSushiChanged();
@@ -1740,11 +1783,12 @@ namespace sushi.Models
 		
 		public Sushi()
 		{
+			this._carts = new EntitySet<cart>(new Action<cart>(this.attach_carts), new Action<cart>(this.detach_carts));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Sushi", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ID_Sushi
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Sushi", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ID_Sushi
 		{
 			get
 			{
@@ -1843,6 +1887,19 @@ namespace sushi.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sushi_cart", Storage="_carts", ThisKey="ID_Sushi", OtherKey="ID_Sushi")]
+		public EntitySet<cart> carts
+		{
+			get
+			{
+				return this._carts;
+			}
+			set
+			{
+				this._carts.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1861,6 +1918,18 @@ namespace sushi.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_carts(cart entity)
+		{
+			this.SendPropertyChanging();
+			entity.Sushi = this;
+		}
+		
+		private void detach_carts(cart entity)
+		{
+			this.SendPropertyChanging();
+			entity.Sushi = null;
 		}
 	}
 }
