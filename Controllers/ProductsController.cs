@@ -18,7 +18,7 @@ namespace sushi.Controllers
             string connectionString = "Data Source=JIN-592G\\SQLEXPRESS;Initial Catalog=DACS;Integrated Security=True";
             data = new DataClasses1DataContext(connectionString);
         }
-        public ActionResult Index(int? page, string searchString, int cateid = 0)
+        public ActionResult Index(int? page, string searchString)
         {
             var all_sanpham = from s in data.Sushis select s;
             if (!String.IsNullOrEmpty(searchString))
@@ -48,6 +48,11 @@ namespace sushi.Controllers
             ViewBag.MaThuongHieu = new SelectList(data.THUONG_HIEUs, "Ma_TH", "TenTH");
             return View();
         }*/
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Create(FormCollection collection, Sushi s, int cateid = 0, int idtypeSP = 0, int brandid = 0)
         {
@@ -57,12 +62,12 @@ namespace sushi.Controllers
             //var E_hinhphu1 = collection["HinhAnhCT1"];
             //var E_hinhphu2 = collection["HinhAnhCT2"];
             //var E_hinhphu3 = collection["HinhAnhCT3"];
-           // var E_hinhphu4 = collection["HinhAnhCT4"];
+            // var E_hinhphu4 = collection["HinhAnhCT4"];
             var E_giaban = Convert.ToDecimal(collection["Gia"]);
             //var E_soluong = Convert.ToInt32(collection["SoLuong"]);
-            var E_id = Convert.ToInt32(collection["ID"]);
+            var E_id = Convert.ToString(collection["ID"]);
             if (string.IsNullOrEmpty(E_masp))
-            {
+            { 
                 ViewData["Error"] = "Don't empty";
             }
             else
@@ -86,14 +91,14 @@ namespace sushi.Controllers
                 //s.HinhAnhCT1 = E_hinhphu1.ToString();
                 //s.HinhAnhCT2 = E_hinhphu2.ToString();
                 //s.HinhAnhCT3 = E_hinhphu3.ToString();
-               //s.HinhAnhCT4 = E_hinhphu4.ToString();
+                //s.HinhAnhCT4 = E_hinhphu4.ToString();
                 s.Gia = E_giaban;
                 //s.SoLuong = E_soluong;
                 data.Sushis.InsertOnSubmit(s);
                 data.SubmitChanges();
                 return RedirectToAction("Index");
             }
-            return this.Create();
+            return Create(collection, s, cateid, idtypeSP, brandid);
         }
         public string ProcessUpload(HttpPostedFileBase file)
         {
@@ -101,8 +106,8 @@ namespace sushi.Controllers
             {
                 return "";
             }
-            file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
-            return "/Content/images/" + file.FileName;
+            file.SaveAs(Server.MapPath("~/images/" + file.FileName));
+            return "/images/" + file.FileName;
         }
 
         /*public ActionResult Edit(string id)
@@ -146,7 +151,7 @@ namespace sushi.Controllers
                 data.SubmitChanges();
                 return RedirectToAction("Index");
             }
-            return this.Edit(id);
+            return Edit(id, collection);
         }
         public ActionResult Delete(string id)
         {
@@ -162,3 +167,4 @@ namespace sushi.Controllers
             return RedirectToAction("Index");
         }
     }
+}

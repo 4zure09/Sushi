@@ -1226,7 +1226,7 @@ namespace sushi.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="TenDangNhapTK", Storage="_TenDangNhap", DbType="Char(30) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="TenDangNhap", Storage="_TenDangNhap", DbType="Char(30) NOT NULL", CanBeNull=false)]
 		public string TenDangNhap
 		{
 			get

@@ -42,7 +42,7 @@ namespace sushi.Controllers
         public ActionResult Detail(string id, FormCollection collection)
         {
             var E_khachhang = data.KhachHangs.First(m => m.MaKH == id);
-            var E_tendangnhap = collection["TenDangNhapTK"];
+            var E_tendangnhap = collection["TenDangNhap"];
             var E_hoten = collection["HoTenKH"];
             var E_sdt = collection["SDT"];
             var E_diachi = collection["DiaChi"];

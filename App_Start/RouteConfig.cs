@@ -18,6 +18,11 @@ namespace sushi
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "Create",
+                url: "Products/Create",
+                defaults: new { controller = "Products", action = "Create" }
+);
         }
     }
 }

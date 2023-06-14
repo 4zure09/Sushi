@@ -162,10 +162,18 @@ namespace sushi.Controllers
                 {
                     ViewBag.ThongBao = "Vô mua luôn thôi bạn êii";
                     KhachHang i = db.KhachHangs.SingleOrDefault(log => log.TenDangNhap == username);
-                    Session["KhachHang"] = i;
-                    Session["TaiKhoan"] = i.MaKH;
-                    return RedirectToAction("Index", "Home");
-                }
+                    if (i != null && i.MaKH != null)
+                    {
+                        Session["KhachHang"] = i;
+                        Session["TaiKhoan"] = i.MaKH;
+                        return RedirectToAction("Index", "Products");
+                    }
+                    else
+                    {
+                        ViewData["LoiDangNhap"] = "Tên đăng nhập hoặc mật khẩu không đúng";
+                    }
+
+                }                
 
             }
             else
