@@ -1,0 +1,272 @@
+USE [master]
+GO
+/****** Object:  Database [DACS]    Script Date: 8/06/2023 11:25:18 PM ******/
+CREATE DATABASE [DACS]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'DACS', FILENAME = N'D:\1PhuNguyen\App\SQL sever\MSSQL15.SQLEXPRESS\MSSQL\DATA\DACS.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'DACS_log', FILENAME = N'D:\1PhuNguyen\App\SQL sever\MSSQL15.SQLEXPRESS\MSSQL\DATA\DACS_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [DACS] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [DACS].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [DACS] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [DACS] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [DACS] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [DACS] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [DACS] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [DACS] SET AUTO_CLOSE ON 
+GO
+ALTER DATABASE [DACS] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [DACS] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [DACS] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [DACS] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [DACS] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [DACS] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [DACS] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [DACS] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [DACS] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [DACS] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [DACS] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [DACS] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [DACS] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [DACS] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [DACS] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [DACS] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [DACS] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [DACS] SET  MULTI_USER 
+GO
+ALTER DATABASE [DACS] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [DACS] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [DACS] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [DACS] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [DACS] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [DACS] SET QUERY_STORE = OFF
+GO
+USE [DACS]
+GO
+/****** Object:  Table [dbo].[cart]    Script Date: 8/06/2023 11:25:18 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[cart](
+	[ID_Sushi] [char](10) NOT NULL,
+	[SoluongMua] [int] NULL,
+	[MaKH] [char](50) NOT NULL,
+	[Gia] [decimal](18, 0) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID_Sushi] ASC,
+	[MaKH] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ChiTietDonHang]    Script Date: 8/06/2023 11:25:18 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ChiTietDonHang](
+	[MaHÐ] [int] NOT NULL,
+	[ID_Sushi] [char](10) NOT NULL,
+	[SoLuong] [int] NULL,
+	[TongGia] [decimal](18, 0) NULL,
+	[NgayMua] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[MaHÐ] ASC,
+	[ID_Sushi] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CHUC_VU]    Script Date: 8/06/2023 11:25:18 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CHUC_VU](
+	[MaCV] [char](10) NOT NULL,
+	[ChucVu] [nvarchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[MaCV] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HOA_DON]    Script Date: 8/06/2023 11:25:18 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HOA_DON](
+	[MaHÐ] [int] IDENTITY(1,1) NOT NULL,
+	[NgayDat] [date] NULL,
+	[NgayGiao] [date] NULL,
+	[MaNV] [char](50) NULL,
+	[GiaoHang] [bit] NULL,
+	[ThanhToan] [bit] NULL,
+	[MaKH] [char](50) NOT NULL,
+	[TongTienTT] [decimal](18, 0) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[MaHÐ] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[KhachHang]    Script Date: 8/06/2023 11:25:18 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[KhachHang](
+	[MaKH] [char](50) NOT NULL,
+	[TenDangNhapTK] [char](30) NOT NULL,
+	[HoTenKH] [nvarchar](50) NULL,
+	[SDT] [char](10) NULL,
+	[DiaChi] [nvarchar](250) NULL,
+	[Email] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[MaKH] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[NhanVien]    Script Date: 8/06/2023 11:25:18 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[NhanVien](
+	[MaNV] [char](50) NOT NULL,
+	[TenDangNhap] [char](30) NOT NULL,
+	[MaCV] [char](10) NOT NULL,
+	[HoTen] [nvarchar](50) NULL,
+	[SDT] [char](10) NULL,
+	[DiaChi] [nvarchar](250) NULL,
+	[Email] [nvarchar](40) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[MaNV] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Sushi]    Script Date: 8/06/2023 11:25:18 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Sushi](
+	[ID_Sushi] [char] (10) NOT NULL,
+	[TenSushi] [varchar](255) NULL,
+	[MoTa] [varchar](255) NULL,
+	[Gia] [decimal](10, 2) NULL,
+	[Hinh] [nchar](30) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID_Sushi] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TaiKhoan]    Script Date: 8/06/2023 11:25:18 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TaiKhoan](
+	[TenDangNhap] [char](30) NOT NULL,
+	[MatKhau] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[TenDangNhap] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+INSERT [dbo].[Sushi] ([ID_Sushi], [TenSushi], [MoTa], [Gia], [Hinh]) VALUES (1, N'Ahi    ', NULL, CAST(20000.00 AS Decimal(10, 2)), N'/img/Ahi.jpp                  ')
+GO
+INSERT [dbo].[Sushi] ([ID_Sushi], [TenSushi], [MoTa], [Gia], [Hinh]) VALUES (2, N'Ebi    ', NULL, CAST(25000.00 AS Decimal(10, 2)), N'/img/Ebi.jpg                  ')
+GO
+INSERT [dbo].[Sushi] ([ID_Sushi], [TenSushi], [MoTa], [Gia], [Hinh]) VALUES (3, N'Hamachi', NULL, CAST(25000.00 AS Decimal(10, 2)), N'/img/Hamachi.jpg              ')
+GO
+INSERT [dbo].[Sushi] ([ID_Sushi], [TenSushi], [MoTa], [Gia], [Hinh]) VALUES (4, N'Hotate ', NULL, CAST(20000.00 AS Decimal(10, 2)), N'/img/Hotate.jpg               ')
+GO
+INSERT [dbo].[Sushi] ([ID_Sushi], [TenSushi], [MoTa], [Gia], [Hinh]) VALUES (5, N'Ika    ', NULL, CAST(25000.00 AS Decimal(10, 2)), N'/img/Ika.jpg                  ')
+GO
+INSERT [dbo].[Sushi] ([ID_Sushi], [TenSushi], [MoTa], [Gia], [Hinh]) VALUES (6, N'Inari  ', NULL, CAST(25000.00 AS Decimal(10, 2)), N'/img/Inari.jpp                ')
+GO
+INSERT [dbo].[Sushi] ([ID_Sushi], [TenSushi], [MoTa], [Gia], [Hinh]) VALUES (7, N'Kani   ', NULL, CAST(20000.00 AS Decimal(10, 2)), N'/img/Kani.jpg                 ')
+GO
+INSERT [dbo].[Sushi] ([ID_Sushi], [TenSushi], [MoTa], [Gia], [Hinh]) VALUES (8, N'Sake   ', NULL, CAST(20000.00 AS Decimal(10, 2)), N'/img/Sake.jpg                 ')
+GO
+INSERT [dbo].[Sushi] ([ID_Sushi], [TenSushi], [MoTa], [Gia], [Hinh]) VALUES (9, N'Tako   ', NULL, CAST(25000.00 AS Decimal(10, 2)), N'/img/Tako.jpg                 ')
+GO
+INSERT [dbo].[Sushi] ([ID_Sushi], [TenSushi], [MoTa], [Gia], [Hinh]) VALUES (10, N'Temaki ', NULL, CAST(25000.00 AS Decimal(10, 2)), N'/img/Temaki.jpg               ')
+GO
+INSERT [dbo].[Sushi] ([ID_Sushi], [TenSushi], [MoTa], [Gia], [Hinh]) VALUES (11, N'Tempura', NULL, CAST(25000.00 AS Decimal(10, 2)), N'/img/Tempura.jpg              ')
+GO
+INSERT [dbo].[Sushi] ([ID_Sushi], [TenSushi], [MoTa], [Gia], [Hinh]) VALUES (12, N'Usagi  ', NULL, CAST(20000.00 AS Decimal(10, 2)), N'/img/Usagi.jpg                ')
+GO
+INSERT [dbo].[TaiKhoan] ([TenDangNhap], [MatKhau]) VALUES (N'jngkao                        ', N'12345')
+GO
+ALTER TABLE [dbo].[cart]  WITH CHECK ADD FOREIGN KEY([MaKH])
+REFERENCES [dbo].[KhachHang] ([MaKH])
+GO
+GO
+ALTER TABLE [dbo].[cart]  WITH CHECK ADD FOREIGN KEY([ID_Sushi])
+REFERENCES [dbo].[Sushi] ([ID_Sushi])
+GO
+ALTER TABLE [dbo].[ChiTietDonHang]  WITH CHECK ADD FOREIGN KEY([MaHÐ])
+REFERENCES [dbo].[HOA_DON] ([MaHÐ])
+GO
+ALTER TABLE [dbo].[HOA_DON]  WITH CHECK ADD FOREIGN KEY([MaKH])
+REFERENCES [dbo].[KhachHang] ([MaKH])
+GO
+ALTER TABLE [dbo].[HOA_DON]  WITH CHECK ADD FOREIGN KEY([MaNV])
+REFERENCES [dbo].[NhanVien] ([MaNV])
+GO
+ALTER TABLE [dbo].[KhachHang]  WITH CHECK ADD FOREIGN KEY([TenDangNhapTK])
+REFERENCES [dbo].[TaiKhoan] ([TenDangNhap])
+GO
+ALTER TABLE [dbo].[NhanVien]  WITH CHECK ADD FOREIGN KEY([MaCV])
+REFERENCES [dbo].[CHUC_VU] ([MaCV])
+GO
+ALTER TABLE [dbo].[NhanVien]  WITH CHECK ADD FOREIGN KEY([TenDangNhap])
+REFERENCES [dbo].[TaiKhoan] ([TenDangNhap])
+GO
+USE [master]
+GO
+ALTER DATABASE [DACS] SET  READ_WRITE 
+GO
