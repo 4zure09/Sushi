@@ -22,7 +22,12 @@ namespace sushi
                 name: "Create",
                 url: "Products/Create",
                 defaults: new { controller = "Products", action = "Create" }
-);
+            );
+            routes.MapRoute(
+                name: "Add cart",
+                url: "Them-gio-hang",
+                defaults: new { controller = "GioHang", action = "themGioHang", id = UrlParameter.Optional }
+            );
         }
     }
 }

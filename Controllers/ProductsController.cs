@@ -41,13 +41,6 @@ namespace sushi.Controllers
             int pageNum = page ?? 1;
             return View(all_sanpham.ToPagedList(pageNum, pageSize));
         }
-        /*public ActionResult Create()
-        {
-            ViewBag.LoaiSP = new SelectList(data.Loai_SPs, "Ma_Loai", "TenLoai");
-            ViewBag.MaPhanLoai = new SelectList(data.PhanLoais, "MaPhanLoai", "TenPhanLoai");
-            ViewBag.MaThuongHieu = new SelectList(data.THUONG_HIEUs, "Ma_TH", "TenTH");
-            return View();
-        }*/
         public ActionResult Create()
         {
             return View();
@@ -59,12 +52,8 @@ namespace sushi.Controllers
             var E_masp = collection["ID_Sushi"];
             var E_tensp = collection["TenSushi"];
             var E_hinhsp = collection["Hinh"];
-            //var E_hinhphu1 = collection["HinhAnhCT1"];
-            //var E_hinhphu2 = collection["HinhAnhCT2"];
-            //var E_hinhphu3 = collection["HinhAnhCT3"];
-            // var E_hinhphu4 = collection["HinhAnhCT4"];
-            var E_giaban = Convert.ToDecimal(collection["Gia"]);
-            //var E_soluong = Convert.ToInt32(collection["SoLuong"]);
+            var E_mota = collection["MoTa"];
+            decimal E_giaban = Convert.ToDecimal(collection["Gia"]);
             var E_id = Convert.ToString(collection["ID"]);
             if (string.IsNullOrEmpty(E_masp))
             { 
@@ -72,28 +61,11 @@ namespace sushi.Controllers
             }
             else
             {
-                /*if (idtypeSP != 0)
-                {
-                    s.Ma_Loai = idtypeSP;
-                }
-                if (cateid != 0)
-                {
-                    s.MaPhanLoai = cateid;
-                }
-                if (brandid != 0)
-                {
-                    s.Ma_TH = brandid;
-                }*/
-                //s.SLTruyCap = 0;
                 s.ID_Sushi = E_masp.ToString();
                 s.TenSushi = E_tensp.ToString();
-                s.Hinh = E_hinhsp.ToString();
-                //s.HinhAnhCT1 = E_hinhphu1.ToString();
-                //s.HinhAnhCT2 = E_hinhphu2.ToString();
-                //s.HinhAnhCT3 = E_hinhphu3.ToString();
-                //s.HinhAnhCT4 = E_hinhphu4.ToString();
                 s.Gia = E_giaban;
-                //s.SoLuong = E_soluong;
+                s.MoTa = E_mota;
+                s.Hinh = E_hinhsp.ToString();
                 data.Sushis.InsertOnSubmit(s);
                 data.SubmitChanges();
                 return RedirectToAction("Index");
@@ -106,18 +78,14 @@ namespace sushi.Controllers
             {
                 return "";
             }
-            file.SaveAs(Server.MapPath("~/images/" + file.FileName));
-            return "/images/" + file.FileName;
+            file.SaveAs(Server.MapPath("~/images" + file.FileName));
+            return "/images" + file.FileName;
         }
 
-        /*public ActionResult Edit(string id)
+        public ActionResult Edit()
         {
-            ViewBag.LoaiSP = new SelectList(data.Loai_SPs, "Ma_Loai", "TenLoai");
-            ViewBag.MaPhanLoai = new SelectList(data.PhanLoais, "MaPhanLoai", "TenPhanLoai");
-            ViewBag.MaThuongHieu = new SelectList(data.THUONG_HIEUs, "Ma_TH", "TenTH");
-            var D_sanpham = data.SAN_PHAMs.Where(m => m.MaSP.StartsWith(id)).First();
-            return View(D_sanpham);
-        }*/
+            return View();
+        }
         [HttpPost]
         public ActionResult Edit(string id, FormCollection collection)
         {
@@ -125,12 +93,8 @@ namespace sushi.Controllers
             var E_masp = collection["ID_Sushi"];
             var E_tensp = collection["TenSushi"];
             var E_hinhsp = collection["Hinh"];
-            //var E_hinhphu1 = collection["HinhAnhCT1"];
-            //var E_hinhphu2 = collection["HinhAnhCT2"];
-            //var E_hinhphu3 = collection["HinhAnhCT3"];
-            //var E_hinhphu4 = collection["HinhAnhCT4"];
-            var E_giaban = Convert.ToDecimal(collection["Gia"]);
-            //var E_soluong = Convert.ToInt32(collection["SoLuong"]);
+            var E_mota = collection["MoTa"];
+            decimal E_giaban = Convert.ToDecimal(collection["Gia"]);
             var E_id = Convert.ToInt32(collection["ID"]);
             if (string.IsNullOrEmpty(E_masp))
             {
@@ -140,13 +104,9 @@ namespace sushi.Controllers
             {
                 E_sanpham.ID_Sushi = E_masp.ToString();
                 E_sanpham.TenSushi = E_tensp.ToString();
-                E_sanpham.Hinh = E_hinhsp.ToString();
-                //E_sanpham.HinhAnhCT1 = E_hinhphu1.ToString();
-                //E_sanpham.HinhAnhCT2 = E_hinhphu2.ToString();
-                //E_sanpham.HinhAnhCT3 = E_hinhphu3.ToString();
-                //E_sanpham.HinhAnhCT4 = E_hinhphu4.ToString();
                 E_sanpham.Gia = E_giaban;
-                //E_sanpham.SoLuong = E_soluong;
+                E_sanpham.MoTa = E_mota.ToString();
+                E_sanpham.Hinh = E_hinhsp.ToString();
                 UpdateModel(E_sanpham);
                 data.SubmitChanges();
                 return RedirectToAction("Index");

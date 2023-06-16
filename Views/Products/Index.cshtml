@@ -89,7 +89,7 @@
                             <td><img src="@item.Hinh" width="200" alt=""></td>
                             <td>@item.TenSushi </td>
                             <td>@String.Format("{0:0,0}", item.Gia)</td>
-                            <td><a href="@Url.Action("Edit", "Products", new { id = item.ID_Sushi.ToString().TrimEnd() })">Chi tiết</a></td>
+                            <td><a href="@Url.Action("Edit", "Products", new { id = item.ID_Sushi.ToString().TrimEnd() })">Sửa</a></td>
                             <td><a href="@Url.Action("Delete", "Products", new { id = item.ID_Sushi.ToString().TrimEnd() })">Xóa sản phẩm</a></td>
                         </tr>
                     </tbody>

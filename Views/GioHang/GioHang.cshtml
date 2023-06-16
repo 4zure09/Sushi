@@ -536,7 +536,7 @@
 
     @foreach (var item in Model)
     {
-        <form id="cart-form" action='@Url.Action("CapnhatGiohang", "GioHang", new { @upid = item.MaSP})' method="POST">
+        <form id="cart-form" action='@Url.Action("CapnhatGiohang", "GioHang", new { @upid = item.ID_Sushi})' method="POST">
             <table width="100%">
                 <thead>
                     <tr>
