@@ -74,10 +74,10 @@
             <table>
                 <thead>
                     <tr>
-                        <td>Mã nhân viên</td>
-                        <td>Họ tên</td>
-                        <td>Chức vụ</td>
-                        <td>Email</td>
+                        <td>Mã nhân viên &nbsp</td>
+                        <td>Họ tên &nbsp</td>
+                        <td>Chức vụ &nbsp</td>
+                        <td>Email &nbsp</td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -86,14 +86,12 @@
                 {
                     <tbody>
                         <tr>
-                            <td>@item.MaNV</td>
-                            <td>@item.HoTen</td>
-                            <td>@item.CHUC_VU.ChucVu</td>
-
-                            <td>@item.Email </td>
-
-                            <td><a href="@Url.Action("Edit", "NhanVien", new { id = item.MaNV.ToString().TrimEnd(' ') })">Chi tiết</a></td>
-                            <td><a href="@Url.Action("Delete", "NhanVien", new { id = item.MaNV.ToString().TrimEnd() })">Xóa nhân viên</a></td>
+                            <td>@item.MaNV &nbsp</td>
+                            <td>@item.HoTen &nbsp</td>
+                            <td>@item.CHUC_VU.ChucVu &nbsp</td>
+                            <td>@item.Email &nbsp</td>
+                            <td><a href="@Url.Action("Edit", "NhanVien", new { id = item.MaNV.ToString().TrimEnd(' ') })">Chi tiết &nbsp</a></td>
+                            <td><a href="@Url.Action("Delete", "NhanVien", new { id = item.MaNV.ToString().TrimEnd() })">Xóa nhân viên &nbsp</a></td>
                         </tr>
                     </tbody>
                 }

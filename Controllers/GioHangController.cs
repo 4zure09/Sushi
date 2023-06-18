@@ -50,7 +50,7 @@ namespace sushi.Controllers
                 Sushi sp = data.Sushis.FirstOrDefault(s => s.ID_Sushi == idaddcart);
                 if (kh == null || kh.ToString() == "")
                 {
-                    return RedirectToAction("DangNhap", "User");
+                    return RedirectToAction("Login", "User");
                 }
                 else
                 {
@@ -131,7 +131,7 @@ namespace sushi.Controllers
         {
             if (Session["KhachHang"] == null || Session["KhachHang"].ToString() == "")
             {
-                return RedirectToAction("DangNhap", "Account");
+                return RedirectToAction("Login", "Account");
             }
             else
             {

@@ -144,7 +144,7 @@ namespace sushi.Controllers
                     if (nv.MaCV.Contains("NV") == true) //So sánh chuỗi MaCV có chữ NV hay không, nếu đúng ( true ) thì trả về
                     {
                         Session["NhanVienCapThap"] = nv.MaCV;
-
+                        return RedirectToAction("ThongKe", "ThongKe");
                     }
                     else //Nếu không, ngược lại
                     {
@@ -156,7 +156,7 @@ namespace sushi.Controllers
                     /*Session["ChucVu"] = nv.MaCV;*/
 
                     //Chuyển qua trang admin, thay Index với Products bằng Thống kê của trang Admin
-                    return RedirectToAction("ThongKe", "ThongKe");
+                    return RedirectToAction("Index", "Products");
                 }
                 else
                 {
@@ -166,7 +166,7 @@ namespace sushi.Controllers
                     {
                         Session["KhachHang"] = i;
                         Session["TaiKhoan"] = i.MaKH;
-                        return RedirectToAction("Index", "Products");
+                        return RedirectToAction("ListMenu", "Menu");
                     }
                     else
                     {
