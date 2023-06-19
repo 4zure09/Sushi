@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace sushi.Controllers
 {
@@ -32,6 +33,16 @@ namespace sushi.Controllers
             return View();
         }
 
+
+        public ActionResult XacnhanDonhang()
+        {
+            string tens = (Session["SPDC"] as Sushi).TenSushi;
+            var spdc = (from p in data.Sushis where p.TenSushi == tens select p).OrderBy( m => m.Gia); //Sắp xếp theo giá
+            /*var spdc = (from p in data.Sushis where p.MaPhanLoai == mapl select p).OrderByDescending(m => m.SLTruyCap);*/
+            int pageSize = 3;
+
+            return View(spdc.ToPagedList(1, pageSize));
+        }
         //Lịch sử giao dịch
         public ActionResult LichSuGiaoDich(string taikhoangiaodich)
         {

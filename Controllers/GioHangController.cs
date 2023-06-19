@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace sushi.Controllers
 {
@@ -50,7 +52,7 @@ namespace sushi.Controllers
                 Sushi sp = data.Sushis.FirstOrDefault(s => s.ID_Sushi == idaddcart);
                 if (kh == null || kh.ToString() == "")
                 {
-                    return RedirectToAction("Login", "User");
+                    return RedirectToAction("Login", "Account");
                 }
                 else
                 {
@@ -76,7 +78,6 @@ namespace sushi.Controllers
                     }
                 }
             }
-
         }
         private int tongSoLuongSanPham()
         {

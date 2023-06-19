@@ -32,7 +32,8 @@
                         <div class="position-relative mt-auto">
                             <img class="img-fluid" src="@item.Hinh" alt="">
                             <div class="product-overlay">
-                                <a class="btn btn-lg-square btn-outline-light rounded-circle" href="@Url.Action("themGioHang", "GioHang", new { itemId = item.ID_Sushi })"><i class="fa fa-shopping-cart text-primary" href="/them-gio-hang?idaddcart=@item.ID_Sushi"></i></a>
+                                <a class="btn btn-lg-square btn-outline-light rounded-circle" href="@Url.Action("themGioHang", "GioHang", new { idaddcart = item.ID_Sushi, strURL = Request.Url.ToString() })" method="POST"><i class="fa fa-shopping-cart text-primary"></i></a>
+
                             </div>
                         </div>
                     </div>

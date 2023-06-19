@@ -1,14 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DACS" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Table Name="dbo.cart" Member="carts">
-    <Type Name="cart">
-      <Column Name="ID_Sushi" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SoluongMua" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MaKH" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Gia" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Association Name="KhachHang_cart" Member="KhachHang" ThisKey="MaKH" OtherKey="MaKH" Type="KhachHang" IsForeignKey="true" />
-      <Association Name="Sushi_cart" Member="Sushi" ThisKey="ID_Sushi" OtherKey="ID_Sushi" Type="Sushi" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.TaiKhoan" Member="TaiKhoans">
     <Type Name="TaiKhoan">
       <Column Name="TenDangNhap" Type="System.String" DbType="Char(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -52,13 +42,13 @@
   <Table Name="dbo.KhachHang" Member="KhachHangs">
     <Type Name="KhachHang">
       <Column Name="MaKH" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TenDangNhapTK" Member="TenDangNhap" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TenDangNhap" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
       <Column Name="HoTenKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SDT" Type="System.String" DbType="Char(10)" CanBeNull="true" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="KhachHang_cart" Member="carts" ThisKey="MaKH" OtherKey="MaKH" Type="cart" />
       <Association Name="KhachHang_HOA_DON" Member="HOA_DONs" ThisKey="MaKH" OtherKey="MaKH" Type="HOA_DON" />
+      <Association Name="KhachHang_cart" Member="carts" ThisKey="MaKH" OtherKey="MaKH" Type="cart" />
       <Association Name="TaiKhoan_KhachHang" Member="TaiKhoan" ThisKey="TenDangNhap" OtherKey="TenDangNhap" Type="TaiKhoan" IsForeignKey="true" />
     </Type>
   </Table>
@@ -84,6 +74,16 @@
       <Column Name="Gia" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
       <Column Name="Hinh" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
       <Association Name="Sushi_cart" Member="carts" ThisKey="ID_Sushi" OtherKey="ID_Sushi" Type="cart" />
+    </Type>
+  </Table>
+  <Table Name="dbo.cart" Member="carts">
+    <Type Name="cart">
+      <Column Name="ID_Sushi" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoluongMua" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaKH" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Gia" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Association Name="Sushi_cart" Member="Sushi" ThisKey="ID_Sushi" OtherKey="ID_Sushi" Type="Sushi" IsForeignKey="true" />
+      <Association Name="KhachHang_cart" Member="KhachHang" ThisKey="MaKH" OtherKey="MaKH" Type="KhachHang" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -24,10 +24,10 @@ namespace sushi
                 defaults: new { controller = "Products", action = "Create" }
             );
             routes.MapRoute(
-                name: "Add cart",
-                url: "Them-gio-hang",
-                defaults: new { controller = "GioHang", action = "themGioHang", id = UrlParameter.Optional }
-            );
+                name: "AddToCart",
+                url: "Them-gio-hang/{idaddcart}",
+                defaults: new { controller = "GioHang", action = "themGioHang", idaddcart = UrlParameter.Optional }
+);
         }
     }
 }

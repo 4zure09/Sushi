@@ -30,9 +30,6 @@ namespace sushi.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void Insertcart(cart instance);
-    partial void Updatecart(cart instance);
-    partial void Deletecart(cart instance);
     partial void InsertTaiKhoan(TaiKhoan instance);
     partial void UpdateTaiKhoan(TaiKhoan instance);
     partial void DeleteTaiKhoan(TaiKhoan instance);
@@ -54,6 +51,9 @@ namespace sushi.Models
     partial void InsertSushi(Sushi instance);
     partial void UpdateSushi(Sushi instance);
     partial void DeleteSushi(Sushi instance);
+    partial void Insertcart(cart instance);
+    partial void Updatecart(cart instance);
+    partial void Deletecart(cart instance);
     #endregion
 		
 		public DataClasses1DataContext(string connection) : 
@@ -78,14 +78,6 @@ namespace sushi.Models
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<cart> carts
-		{
-			get
-			{
-				return this.GetTable<cart>();
-			}
 		}
 		
 		public System.Data.Linq.Table<TaiKhoan> TaiKhoans
@@ -143,220 +135,12 @@ namespace sushi.Models
 				return this.GetTable<Sushi>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.cart")]
-	public partial class cart : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _ID_Sushi;
-		
-		private System.Nullable<int> _SoluongMua;
-		
-		private string _MaKH;
-		
-		private System.Nullable<decimal> _Gia;
-		
-		private EntityRef<KhachHang> _KhachHang;
-		
-		private EntityRef<Sushi> _Sushi;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnID_SushiChanging(string value);
-    partial void OnID_SushiChanged();
-    partial void OnSoluongMuaChanging(System.Nullable<int> value);
-    partial void OnSoluongMuaChanged();
-    partial void OnMaKHChanging(string value);
-    partial void OnMaKHChanged();
-    partial void OnGiaChanging(System.Nullable<decimal> value);
-    partial void OnGiaChanged();
-    #endregion
-		
-		public cart()
-		{
-			this._KhachHang = default(EntityRef<KhachHang>);
-			this._Sushi = default(EntityRef<Sushi>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Sushi", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string ID_Sushi
+		public System.Data.Linq.Table<cart> carts
 		{
 			get
 			{
-				return this._ID_Sushi;
-			}
-			set
-			{
-				if ((this._ID_Sushi != value))
-				{
-					if (this._Sushi.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnID_SushiChanging(value);
-					this.SendPropertyChanging();
-					this._ID_Sushi = value;
-					this.SendPropertyChanged("ID_Sushi");
-					this.OnID_SushiChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoluongMua", DbType="Int")]
-		public System.Nullable<int> SoluongMua
-		{
-			get
-			{
-				return this._SoluongMua;
-			}
-			set
-			{
-				if ((this._SoluongMua != value))
-				{
-					this.OnSoluongMuaChanging(value);
-					this.SendPropertyChanging();
-					this._SoluongMua = value;
-					this.SendPropertyChanged("SoluongMua");
-					this.OnSoluongMuaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", DbType="Char(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MaKH
-		{
-			get
-			{
-				return this._MaKH;
-			}
-			set
-			{
-				if ((this._MaKH != value))
-				{
-					if (this._KhachHang.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaKHChanging(value);
-					this.SendPropertyChanging();
-					this._MaKH = value;
-					this.SendPropertyChanged("MaKH");
-					this.OnMaKHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gia", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Gia
-		{
-			get
-			{
-				return this._Gia;
-			}
-			set
-			{
-				if ((this._Gia != value))
-				{
-					this.OnGiaChanging(value);
-					this.SendPropertyChanging();
-					this._Gia = value;
-					this.SendPropertyChanged("Gia");
-					this.OnGiaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhachHang_cart", Storage="_KhachHang", ThisKey="MaKH", OtherKey="MaKH", IsForeignKey=true)]
-		public KhachHang KhachHang
-		{
-			get
-			{
-				return this._KhachHang.Entity;
-			}
-			set
-			{
-				KhachHang previousValue = this._KhachHang.Entity;
-				if (((previousValue != value) 
-							|| (this._KhachHang.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._KhachHang.Entity = null;
-						previousValue.carts.Remove(this);
-					}
-					this._KhachHang.Entity = value;
-					if ((value != null))
-					{
-						value.carts.Add(this);
-						this._MaKH = value.MaKH;
-					}
-					else
-					{
-						this._MaKH = default(string);
-					}
-					this.SendPropertyChanged("KhachHang");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sushi_cart", Storage="_Sushi", ThisKey="ID_Sushi", OtherKey="ID_Sushi", IsForeignKey=true)]
-		public Sushi Sushi
-		{
-			get
-			{
-				return this._Sushi.Entity;
-			}
-			set
-			{
-				Sushi previousValue = this._Sushi.Entity;
-				if (((previousValue != value) 
-							|| (this._Sushi.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Sushi.Entity = null;
-						previousValue.carts.Remove(this);
-					}
-					this._Sushi.Entity = value;
-					if ((value != null))
-					{
-						value.carts.Add(this);
-						this._ID_Sushi = value.ID_Sushi;
-					}
-					else
-					{
-						this._ID_Sushi = default(string);
-					}
-					this.SendPropertyChanged("Sushi");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<cart>();
 			}
 		}
 	}
@@ -1174,9 +958,9 @@ namespace sushi.Models
 		
 		private string _Email;
 		
-		private EntitySet<cart> _carts;
-		
 		private EntitySet<HOA_DON> _HOA_DONs;
+		
+		private EntitySet<cart> _carts;
 		
 		private EntityRef<TaiKhoan> _TaiKhoan;
 		
@@ -1200,8 +984,8 @@ namespace sushi.Models
 		
 		public KhachHang()
 		{
-			this._carts = new EntitySet<cart>(new Action<cart>(this.attach_carts), new Action<cart>(this.detach_carts));
 			this._HOA_DONs = new EntitySet<HOA_DON>(new Action<HOA_DON>(this.attach_HOA_DONs), new Action<HOA_DON>(this.detach_HOA_DONs));
+			this._carts = new EntitySet<cart>(new Action<cart>(this.attach_carts), new Action<cart>(this.detach_carts));
 			this._TaiKhoan = default(EntityRef<TaiKhoan>);
 			OnCreated();
 		}
@@ -1226,7 +1010,7 @@ namespace sushi.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="TenDangNhap", Storage="_TenDangNhap", DbType="Char(30) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenDangNhap", DbType="Char(30) NOT NULL", CanBeNull=false)]
 		public string TenDangNhap
 		{
 			get
@@ -1237,6 +1021,10 @@ namespace sushi.Models
 			{
 				if ((this._TenDangNhap != value))
 				{
+					if (this._TaiKhoan.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnTenDangNhapChanging(value);
 					this.SendPropertyChanging();
 					this._TenDangNhap = value;
@@ -1326,19 +1114,6 @@ namespace sushi.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhachHang_cart", Storage="_carts", ThisKey="MaKH", OtherKey="MaKH")]
-		public EntitySet<cart> carts
-		{
-			get
-			{
-				return this._carts;
-			}
-			set
-			{
-				this._carts.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhachHang_HOA_DON", Storage="_HOA_DONs", ThisKey="MaKH", OtherKey="MaKH")]
 		public EntitySet<HOA_DON> HOA_DONs
 		{
@@ -1349,6 +1124,19 @@ namespace sushi.Models
 			set
 			{
 				this._HOA_DONs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhachHang_cart", Storage="_carts", ThisKey="MaKH", OtherKey="MaKH")]
+		public EntitySet<cart> carts
+		{
+			get
+			{
+				return this._carts;
+			}
+			set
+			{
+				this._carts.Assign(value);
 			}
 		}
 		
@@ -1406,18 +1194,6 @@ namespace sushi.Models
 			}
 		}
 		
-		private void attach_carts(cart entity)
-		{
-			this.SendPropertyChanging();
-			entity.KhachHang = this;
-		}
-		
-		private void detach_carts(cart entity)
-		{
-			this.SendPropertyChanging();
-			entity.KhachHang = null;
-		}
-		
 		private void attach_HOA_DONs(HOA_DON entity)
 		{
 			this.SendPropertyChanging();
@@ -1425,6 +1201,18 @@ namespace sushi.Models
 		}
 		
 		private void detach_HOA_DONs(HOA_DON entity)
+		{
+			this.SendPropertyChanging();
+			entity.KhachHang = null;
+		}
+		
+		private void attach_carts(cart entity)
+		{
+			this.SendPropertyChanging();
+			entity.KhachHang = this;
+		}
+		
+		private void detach_carts(cart entity)
 		{
 			this.SendPropertyChanging();
 			entity.KhachHang = null;
@@ -1930,6 +1718,222 @@ namespace sushi.Models
 		{
 			this.SendPropertyChanging();
 			entity.Sushi = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.cart")]
+	public partial class cart : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _ID_Sushi;
+		
+		private System.Nullable<int> _SoluongMua;
+		
+		private string _MaKH;
+		
+		private System.Nullable<decimal> _Gia;
+		
+		private EntityRef<Sushi> _Sushi;
+		
+		private EntityRef<KhachHang> _KhachHang;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_SushiChanging(string value);
+    partial void OnID_SushiChanged();
+    partial void OnSoluongMuaChanging(System.Nullable<int> value);
+    partial void OnSoluongMuaChanged();
+    partial void OnMaKHChanging(string value);
+    partial void OnMaKHChanged();
+    partial void OnGiaChanging(System.Nullable<decimal> value);
+    partial void OnGiaChanged();
+    #endregion
+		
+		public cart()
+		{
+			this._Sushi = default(EntityRef<Sushi>);
+			this._KhachHang = default(EntityRef<KhachHang>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Sushi", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ID_Sushi
+		{
+			get
+			{
+				return this._ID_Sushi;
+			}
+			set
+			{
+				if ((this._ID_Sushi != value))
+				{
+					if (this._Sushi.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnID_SushiChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Sushi = value;
+					this.SendPropertyChanged("ID_Sushi");
+					this.OnID_SushiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoluongMua", DbType="Int")]
+		public System.Nullable<int> SoluongMua
+		{
+			get
+			{
+				return this._SoluongMua;
+			}
+			set
+			{
+				if ((this._SoluongMua != value))
+				{
+					this.OnSoluongMuaChanging(value);
+					this.SendPropertyChanging();
+					this._SoluongMua = value;
+					this.SendPropertyChanged("SoluongMua");
+					this.OnSoluongMuaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", DbType="Char(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MaKH
+		{
+			get
+			{
+				return this._MaKH;
+			}
+			set
+			{
+				if ((this._MaKH != value))
+				{
+					if (this._KhachHang.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaKHChanging(value);
+					this.SendPropertyChanging();
+					this._MaKH = value;
+					this.SendPropertyChanged("MaKH");
+					this.OnMaKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gia", DbType="Decimal(10,2)")]
+		public System.Nullable<decimal> Gia
+		{
+			get
+			{
+				return this._Gia;
+			}
+			set
+			{
+				if ((this._Gia != value))
+				{
+					this.OnGiaChanging(value);
+					this.SendPropertyChanging();
+					this._Gia = value;
+					this.SendPropertyChanged("Gia");
+					this.OnGiaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sushi_cart", Storage="_Sushi", ThisKey="ID_Sushi", OtherKey="ID_Sushi", IsForeignKey=true)]
+		public Sushi Sushi
+		{
+			get
+			{
+				return this._Sushi.Entity;
+			}
+			set
+			{
+				Sushi previousValue = this._Sushi.Entity;
+				if (((previousValue != value) 
+							|| (this._Sushi.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Sushi.Entity = null;
+						previousValue.carts.Remove(this);
+					}
+					this._Sushi.Entity = value;
+					if ((value != null))
+					{
+						value.carts.Add(this);
+						this._ID_Sushi = value.ID_Sushi;
+					}
+					else
+					{
+						this._ID_Sushi = default(string);
+					}
+					this.SendPropertyChanged("Sushi");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhachHang_cart", Storage="_KhachHang", ThisKey="MaKH", OtherKey="MaKH", IsForeignKey=true)]
+		public KhachHang KhachHang
+		{
+			get
+			{
+				return this._KhachHang.Entity;
+			}
+			set
+			{
+				KhachHang previousValue = this._KhachHang.Entity;
+				if (((previousValue != value) 
+							|| (this._KhachHang.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._KhachHang.Entity = null;
+						previousValue.carts.Remove(this);
+					}
+					this._KhachHang.Entity = value;
+					if ((value != null))
+					{
+						value.carts.Add(this);
+						this._MaKH = value.MaKH;
+					}
+					else
+					{
+						this._MaKH = default(string);
+					}
+					this.SendPropertyChanged("KhachHang");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

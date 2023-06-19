@@ -104,20 +104,20 @@
                 @foreach (var item in Model)
                 {
                     <div class="product">
-                        <a href="@Url.Action("Detail", "Home", new { id = item.MaSP.ToString().TrimEnd(' ')   }  )">
-                            <img src="@item.HinhAnhSP" alt="">
+                        <a href="@Url.Action("Detail", "Home", new { id = item.ID_Sushi.ToString().TrimEnd(' ')   }  )">
+                            <img src="@item.Hinh" alt="">
                         </a>
                         <div class="design">
 
-                            <a href="@Url.Action("Detail", "Home", new { id = item.MaSP.ToString().TrimEnd(' ')   }  )">
-                                <h5>@item.TenSP</h5>
+                            <a href="@Url.Action("Detail", "Home", new { id = item.ID_Sushi.ToString().TrimEnd(' ')   }  )">
+                                <h5>@item.TenSushi</h5>
                             </a>
                             <h4>@String.Format("{0:0,0}", item.Gia)đ</h4>
                         </div>
                     </div>
                 }
 
-                <a href="@Url.Action("Productlist","Home")">Xem thêm sản phẩm khác >>></a>
+                <a href="@Url.Action("ListMenu","Menu")">Xem thêm sản phẩm khác >>></a>
                 <!-- <a href="#"><i class="fa fa-shopping-cart cart"></i></a> -->
             </div>
         </section>
